@@ -45,3 +45,8 @@ Available options include:
  * Chrome 15
 
 *Note*: It will work in IE6-8 also, but only if your TEXTAREA has `display:block;` (`display:inline;`, the default, doesn't appear to work very well)
+
+### Changlog
+
+ * `1.1` - Starting version, forked from [original](http://james.padolsey.com/demos/plugins/jQuery/autoresize.jquery.js).
+ * `1.11` - Added support for pasting (thanks to [Alex](https://github.com/jamespadolsey/jQuery.fn.autoResize/pull/2)), and fixed bug with width not being copied.

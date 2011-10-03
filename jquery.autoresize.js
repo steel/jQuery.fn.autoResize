@@ -1,5 +1,5 @@
 /*
- * jQuery.fn.autoResize 1.1
+ * jQuery.fn.autoResize 1.11
  * --
  * https://github.com/jamespadolsey/jQuery.fn.autoResize
  * --
@@ -28,7 +28,7 @@
 		'lineHeight', 'textDecoration', 'letterSpacing',
 		'fontSize', 'fontFamily', 'fontStyle', 'fontWeight',
 		'textTransform', 'textAlign', 'direction', 'wordSpacing', 'fontSizeAdjust',
-		'padding'
+		'padding', 'width'
 	];
 
 	autoResize.cloneCSSValues = {
@@ -111,15 +111,7 @@
 		createClone: function() {
 
 			var el = this.el,
-				clone;
-
-			if (this.nodeName === 'textarea') {
-				clone = el.clone().height('auto');
-			} else {
-				clone = $('<span/>').width('auto').css({
-					whiteSpace: 'nowrap'
-				});
-			}
+				clone = this.nodeName === 'textarea' ? el.clone() : $('<span/>');
 
 			this.clone = clone;
 
@@ -132,6 +124,14 @@
 				.removeAttr('id')
 				.attr('tabIndex', -1)
 				.css(autoResize.cloneCSSValues);
+
+			if (this.nodeName === 'textarea') {
+				clone.height('auto');
+			} else {
+				clone.width('auto').css({
+					whiteSpace: 'nowrap'
+				});
+			}
 
 		},
 
@@ -190,10 +190,10 @@
 			
 			if (scrollTop >= config.maxHeight) {
 				el.css('overflowY', '');
-				return;
+				scrollTop = config.maxHeight;
+			} else {
+				el.css('overflowY', 'hidden');
 			}
-
-			el.css('overflowY', 'hidden');
 
 			if (scrollTop < config.minHeight) {
 				scrollTop = config.minHeight;
