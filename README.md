@@ -50,3 +50,4 @@ Available options include:
 
  * `1.1` - Starting version, forked from [original](http://james.padolsey.com/demos/plugins/jQuery/autoresize.jquery.js).
  * `1.11` - Added support for pasting (thanks to [Alex](https://github.com/jamespadolsey/jQuery.fn.autoResize/pull/2)), and fixed bug with width not being copied.
+ * `1.12` - Bug fix (crucial for multiple AutoResizables on a single page)

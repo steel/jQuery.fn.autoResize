@@ -17,12 +17,12 @@
 		font-family: inherit;
 		font-size: 1em;
 	}
-	#t { display: block; width: 300px; }
+	#t { display: block; width: 100%; }
 </style>
 
 <h1>Textarea</h1>
 
-<textarea id="t"></textarea>
+<textarea id="t"></textarea><textarea></textarea><textarea></textarea><textarea></textarea><textarea></textarea>
 
 <h1>Input</h1>
 
@@ -34,6 +34,6 @@
 <script src="jquery.autoresize.js"></script>
 <script>
 
-$('textarea').height(500);
-	$('*').autoResize({minHeight:100,minWidth:300});
+$('textarea,input').autoResize({});
+
 </script>

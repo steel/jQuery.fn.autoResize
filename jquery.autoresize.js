@@ -1,5 +1,5 @@
 /*
- * jQuery.fn.autoResize 1.11
+ * jQuery.fn.autoResize 1.12
  * --
  * https://github.com/jamespadolsey/jQuery.fn.autoResize
  * --
@@ -54,7 +54,7 @@
 
 	function AutoResizer(el, config) {
 		
-		config = this.config = $.extend(autoResize.defaults, config);
+		config = this.config = $.extend({}, autoResize.defaults, config);
 		this.el = el;
 
 		this.nodeName = el[0].nodeName.toLowerCase();
