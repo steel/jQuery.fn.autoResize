@@ -177,7 +177,7 @@
 
 			// TEXTAREA
 			
-			clone.height(0).val(value).scrollTop(10000);
+			clone.width(el.width()).height(0).val(value).scrollTop(10000);
 			
 			var scrollTop = clone[0].scrollTop + config.extraSpace;
 				
