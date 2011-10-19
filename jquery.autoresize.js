@@ -1,5 +1,5 @@
 /*
- * jQuery.fn.autoResize 1.12
+ * jQuery.fn.autoResize 1.13
  * --
  * https://github.com/jamespadolsey/jQuery.fn.autoResize
  * --
@@ -11,18 +11,20 @@
 
 (function($){
 
-	var defaults = autoResize.defaults = {
-		onResize: function(){},
-		animate: {
-			duration: 200,
-			complete: function(){}
-		},
-		extraSpace: 50,
-		minHeight: 'original',
-		maxHeight: 500,
-		minWidth: 'original',
-		maxWidth: 500
-	};
+	var uid = 'ar' + +new Date,
+
+		defaults = autoResize.defaults = {
+			onResize: function(){},
+			animate: {
+				duration: 200,
+				complete: function(){}
+			},
+			extraSpace: 50,
+			minHeight: 'original',
+			maxHeight: 500,
+			minWidth: 'original',
+			maxWidth: 500
+		};
 
 	autoResize.cloneCSSProperties = [
 		'lineHeight', 'textDecoration', 'letterSpacing',
@@ -39,7 +41,12 @@
 		overflow: 'hidden'
 	};
 
-	autoResize.resizableFilterSelector = 'textarea,input:not(input[type]),input[type=text],input[type=password]';
+	autoResize.resizableFilterSelector = [
+		'textarea:not(textarea.' + uid + ')',
+		'input:not(input[type])',
+		'input[type=text]',
+		'input[type=password]'
+	].join(',');
 
 	autoResize.AutoResizer = AutoResizer;
 
@@ -47,14 +54,16 @@
 
 	function autoResize(config) {
 		this.filter(autoResize.resizableFilterSelector).each(function(){
-			if (typeof $(this).data('AutoResizer') != "object"){
-        			new AutoResizer( $(this), config );
-      			}
+			new AutoResizer( $(this), config );
 		});
 		return this;
 	}
 
 	function AutoResizer(el, config) {
+
+		if (el.data('AutoResizer')) {
+			el.data('AutoResizer').destroy();
+		}
 		
 		config = this.config = $.extend({}, autoResize.defaults, config);
 		this.el = el;
@@ -124,6 +133,7 @@
 			clone
 				.removeAttr('name')
 				.removeAttr('id')
+				.addClass(uid)
 				.attr('tabIndex', -1)
 				.css(autoResize.cloneCSSValues);
 
