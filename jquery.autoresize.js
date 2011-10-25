@@ -205,7 +205,7 @@
 			if (scrollTop + config.extraSpace >= config.maxHeight) {
 				el.css('overflowY', '');
 				scrollTop = config.maxHeight;
-			} else if (scrollTop < config.minHeight) {
+			} else if (scrollTop <= config.minHeight) {
 				scrollTop = config.minHeight;
 			} else {
 				el.css('overflowY', 'hidden');
