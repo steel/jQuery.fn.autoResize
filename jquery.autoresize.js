@@ -45,7 +45,9 @@
 		'textarea:not(textarea.' + uid + ')',
 		'input:not(input[type])',
 		'input[type=text]',
-		'input[type=password]'
+		'input[type=password]',
+		'input[type=email]',
+		'input[type=url]'
 	].join(',');
 
 	autoResize.AutoResizer = AutoResizer;
