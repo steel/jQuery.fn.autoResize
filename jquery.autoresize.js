@@ -1,5 +1,5 @@
 /*
- * jQuery.fn.autoResize 1.13
+ * jQuery.fn.autoResize 1.13.1
  * --
  * https://github.com/jamespadolsey/jQuery.fn.autoResize
  * --
@@ -193,7 +193,7 @@
 			
 			clone.width(el.width()).height(0).val(value).scrollTop(10000);
 			
-			var scrollTop = clone[0].scrollTop + config.extraSpace;
+			var scrollTop = clone[0].scrollTop;
 				
 			// Don't do anything if scrollTop hasen't changed:
 			if (this.previousScrollTop === scrollTop) {
@@ -202,15 +202,14 @@
 
 			this.previousScrollTop = scrollTop;
 			
-			if (scrollTop >= config.maxHeight) {
+			if (scrollTop + config.extraSpace >= config.maxHeight) {
 				el.css('overflowY', '');
 				scrollTop = config.maxHeight;
+			} else if (scrollTop < config.minHeight) {
+				scrollTop = config.minHeight;
 			} else {
 				el.css('overflowY', 'hidden');
-			}
-
-			if (scrollTop < config.minHeight) {
-				scrollTop = config.minHeight;
+				scrollTop += config.extraSpace;
 			}
 
 			config.onResize.call(el);

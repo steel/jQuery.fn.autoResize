@@ -52,3 +52,4 @@ Available options include:
  * `1.11` - Added support for pasting (thanks to [Alex](https://github.com/jamespadolsey/jQuery.fn.autoResize/pull/2)), and fixed bug with width not being copied.
  * `1.12` - Bug fix (crucial for multiple AutoResizables on a single page)
  * `1.13` - Now handles accidental instantiation on the same element more than once. Previous AutoResizer instances will be destroyed (events unbound, references removed, element clones removed etc.).
+ * `1.13.1` - [Issue 9](https://github.com/jamespadolsey/jQuery.fn.autoResize/issues/9) fixed.
