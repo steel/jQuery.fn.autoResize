@@ -111,7 +111,10 @@
 			this.el
 				.bind('keyup.autoResize', check)
 				//.bind('keydown.autoResize', check)
-				.bind('change.autoResize', check);
+				.bind('change.autoResize', check)
+                                .bind('paste.autoResize', function() {
+                                    setTimeout(function() { check(); }, 0);
+                                });
 			
 			this.check(null, true);
 
