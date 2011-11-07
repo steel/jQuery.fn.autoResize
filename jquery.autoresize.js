@@ -1,5 +1,5 @@
 /*
- * jQuery.fn.autoResize 1.13.2
+ * jQuery.fn.autoResize 1.13.3
  * --
  * https://github.com/jamespadolsey/jQuery.fn.autoResize
  * --
@@ -205,6 +205,7 @@
 			if (scrollTop + config.extraSpace >= config.maxHeight) {
 				el.css('overflowY', '');
 				scrollTop = config.maxHeight;
+				immediate = true;
 			} else if (scrollTop <= config.minHeight) {
 				scrollTop = config.minHeight;
 			} else {
