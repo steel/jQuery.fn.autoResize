@@ -1,5 +1,5 @@
 /*
- * jQuery.fn.autoResize 1.13.1
+ * jQuery.fn.autoResize 1.13.2
  * --
  * https://github.com/jamespadolsey/jQuery.fn.autoResize
  * --
