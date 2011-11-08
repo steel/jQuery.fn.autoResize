@@ -55,3 +55,4 @@ Available options include:
  * `1.13.1` - [Issue 9](https://github.com/jamespadolsey/jQuery.fn.autoResize/issues/9) fixed.
  * `1.13.2` - [Issue 14](https://github.com/jamespadolsey/jQuery.fn.autoResize/issues/14) fixed.
  * `1.13.3` - [Issue 15](https://github.com/jamespadolsey/jQuery.fn.autoResize/issues/15) fixed.
+ * `1.13.4` - [Issue 16](https://github.com/jamespadolsey/jQuery.fn.autoResize/issues/16) fixed.

@@ -1,5 +1,5 @@
 /*
- * jQuery.fn.autoResize 1.13.3
+ * jQuery.fn.autoResize 1.13.4
  * --
  * https://github.com/jamespadolsey/jQuery.fn.autoResize
  * --
@@ -112,9 +112,9 @@
 				.bind('keyup.autoResize', check)
 				//.bind('keydown.autoResize', check)
 				.bind('change.autoResize', check)
-                                .bind('paste.autoResize', function() {
-                                    setTimeout(function() { check(); }, 0);
-                                });
+				.bind('paste.autoResize', function() {
+					setTimeout(function() { check(); }, 0);
+				});
 			
 			this.check(null, true);
 
