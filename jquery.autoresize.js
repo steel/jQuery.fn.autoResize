@@ -1,5 +1,5 @@
 /*
- * jQuery.fn.autoResize 1.13.4
+ * jQuery.fn.autoResize 1.14
  * --
  * https://github.com/jamespadolsey/jQuery.fn.autoResize
  * --
@@ -15,6 +15,8 @@
 
 		defaults = autoResize.defaults = {
 			onResize: function(){},
+			onBeforeResize: function(){return 123},
+			onAfterResize: function(){return 555},
 			animate: {
 				duration: 200,
 				complete: function(){}
@@ -91,8 +93,14 @@
 
 		el.data('AutoResizer', this);
 
-		this.createClone();
-		this.injectClone();
+		// Make sure onAfterResize is called upon animation completion
+		config.animate.complete = (function(f){
+			return function() {
+				config.onAfterResize.call(el);
+				return f.apply(this, arguments);
+			};
+		}(config.animate.complete));
+
 		this.bind();
 
 	}
@@ -116,7 +124,9 @@
 					setTimeout(function() { check(); }, 0);
 				});
 			
-			this.check(null, true);
+			if (!this.el.is(':hidden')) {
+				this.check(null, true);
+			}
 
 		},
 
@@ -154,10 +164,19 @@
 
 		check: function(e, immediate) {
 
+			if (!this.clone) {
+		this.createClone();
+		this.injectClone();
+			}
+
 			var config = this.config,
 				clone = this.clone,
 				el = this.el,
 				value = el.val();
+
+			// Do nothing if value hasn't changed
+			if (value === this.prevValue) { return true; }
+			this.prevValue = value;
 
 			if (this.nodeName === 'input') {
 
@@ -176,15 +195,19 @@
 					(newWidth >= config.minWidth && newWidth <= config.maxWidth)
 				) {
 
+					config.onBeforeResize.call(el);
 					config.onResize.call(el);
 
 					el.scrollLeft(0);
 
-					config.animate && !immediate ?
+					if (config.animate && !immediate) {
 						el.stop(1,1).animate({
 							width: newWidth
-						}, config.animate)
-					: el.width(newWidth);
+						}, config.animate);
+					} else {
+						el.width(newWidth);
+						config.onAfterResize.call(el);
+					}
 
 				}
 
@@ -216,15 +239,19 @@
 				scrollTop += config.extraSpace;
 			}
 
+			config.onBeforeResize.call(el);
 			config.onResize.call(el);
-			
+
 			// Either animate or directly apply height:
-			config.animate && !immediate ?
+			if (config.animate && !immediate) {
 				el.stop(1,1).animate({
 					height: scrollTop
-				}, config.animate)
-				: el.height(scrollTop);
-			
+				}, config.animate);
+			} else {
+				el.height(scrollTop);
+				config.onAfterResize.call(el);
+			}
+
 		},
 
 		destroy: function() {

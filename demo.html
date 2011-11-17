@@ -38,17 +38,19 @@
 
 <input id="u" type="url">
 
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 <script src="jquery.autoresize.js"></script>
 <script>
 
-$('textarea,input').autoResize({});
-
-// Test multiple instantiation (should destroy previous each time)
-$('textarea,input').autoResize({});
-$('textarea,input').autoResize({});
-$('textarea,input').autoResize({});
+$('textarea,input').autoResize({
+	onBeforeResize: function(){
+		console.log('Before');
+		$(this).css('background', 'red');
+	},
+	onAfterResize: function(){
+		console.log('After');
+		$(this).css('background', '');
+	}
+});
 
 </script>
