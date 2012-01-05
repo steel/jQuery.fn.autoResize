@@ -1,7 +1,7 @@
 /*
  * jQuery.fn.autoResize 1.14
  * --
- * https://github.com/jamespadolsey/jQuery.fn.autoResize
+ * https://github.com/padolsey/jQuery.fn.autoResize
  * --
  * This program is free software. It comes without any warranty, to
  * the extent permitted by applicable law. You can redistribute it
