@@ -69,7 +69,7 @@
 			el.data('AutoResizer').destroy();
 		}
 		
-		config = this.config = $.extend({}, autoResize.defaults, config);
+		config = this.config = $.extend(true, {}, autoResize.defaults, config);
 		this.el = el;
 
 		this.nodeName = el[0].nodeName.toLowerCase();
