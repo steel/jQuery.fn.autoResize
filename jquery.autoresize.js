@@ -32,7 +32,8 @@
 		'lineHeight', 'textDecoration', 'letterSpacing',
 		'fontSize', 'fontFamily', 'fontStyle', 'fontWeight',
 		'textTransform', 'textAlign', 'direction', 'wordSpacing', 'fontSizeAdjust',
-		'paddingTop', 'paddingLeft', 'paddingBottom', 'paddingRight', 'width'
+		'paddingTop', 'paddingLeft', 'paddingBottom', 'paddingRight', 'width', 
+		'borderTopWidth', 'borderBottomWidth', 'borderLeftWidth', 'borderRightWidth'
 	];
 
 	autoResize.cloneCSSValues = {
@@ -83,12 +84,6 @@
 		if (config.minWidth === 'original') config.minWidth = el.width();
 		if (config.maxHeight === 'original') config.maxHeight = el.height();
 		if (config.minHeight === 'original') config.minHeight = el.height();
-
-		// Include vertical padding and border for calculations
-    config.extraVerticalSpacing = (parseInt(el.css('paddingTop')) || 0);
-    config.extraVerticalSpacing += (parseInt(el.css('paddingBottom')) || 0);
-    config.extraVerticalSpacing += (parseInt(el.css('border-top-width')) || 0);
-    config.extraVerticalSpacing += (parseInt(el.css('border-bottom-width')) || 0);
 
 		if (this.nodeName === 'textarea') {
 			el.css({
@@ -240,11 +235,9 @@
 				immediate = true;
 			} else if (scrollTop <= config.minHeight) {
 				scrollTop = config.minHeight;
-				scrollTop += config.extraVerticalSpacing;
 			} else {
 				el.css('overflowY', 'hidden');
 				scrollTop += config.extraSpace;
-				scrollTop += config.extraVerticalSpacing;
 			}
 
 			config.onBeforeResize.call(el);
